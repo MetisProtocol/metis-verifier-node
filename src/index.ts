@@ -5,7 +5,13 @@ const EthL1Endpint =
   Andromeda 0x9Ed4739afd706122591E75F215208ecF522C0Fd3
   Stardust 0xBde12E56D6d029Bed3e61d6E3b0CCb3311c0bCFb
  */
-const verifyContractAddress = "0xBde12E56D6d029Bed3e61d6E3b0CCb3311c0bCFb";
+const verifyContractAddress = "0x9Ed4739afd706122591E75F215208ecF522C0Fd3";
+
+/*
+Andromeda 0x9e32b13ce7f2e80a01932b42553652e053d6ed8e
+Stardust 0xe552fb52a4f19e44ef5a967632dbc320b0820639
+*/
+const metisAddress = "0x9e32b13ce7f2e80a01932b42553652e053d6ed8e";
 
 const dtlEndpint = "http://localhost:7878";
 
@@ -17,8 +23,12 @@ const chainId = 588;
 
 import { ethers } from "ethers";
 import MVMVerifierABI from "./abis/MVMVerifier.json";
+import MetisABI from "./abis/Metis.json";
+
 import type { MVMVerifier } from "./typechain/MVMVerifier";
+import type { IERC20 } from "./typechain/IERC20";
 import type { VerifierResultResponse } from "./dtl";
+
 import axios from "axios";
 import crypto from "crypto";
 
@@ -29,6 +39,8 @@ const verifier = new ethers.Contract(
   MVMVerifierABI,
   wallet
 ) as MVMVerifier;
+
+const metis = new ethers.Contract(metisAddress, MetisABI, wallet) as IERC20;
 
 const enterStaking = async () => {
   const isWhiteListed = await verifier.isWhiteListed(wallet.address);
@@ -43,6 +55,7 @@ const enterStaking = async () => {
   const minStakeNum = await verifier.minStake();
   if (staked.lt(minStakeNum)) {
     console.log("staking metis");
+    await metis.approve(verifyContractAddress, ethers.constants.MaxUint256);
     await verifier.verifierStake(minStakeNum.sub(staked));
   }
 };
