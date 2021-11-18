@@ -47,20 +47,20 @@ The config of the services, you can get from [config.md](./CONFIG.md)
 
 Make sure your wallet address is whitelisted first and you have sufficient METIS and ETH in your address
 
-Read code example [here](https://github.com/ericlee42/metis-verifier-node-setup/blob/main/src/index.ts#L33-L48).
+Read code example [here](./src/enterStake.ts).
 
 ## Make a challenge
 
-Read code example [here](https://github.com/ericlee42/metis-verifier-node-setup/blob/main/src/index.ts#L33-L48).
+Read code example [here](./src/makeChallenge.ts).
 
 ## Verify1 phase
 
 You have to make a `verify1` if someone makes a challenge.
 
-Read code example [here](https://github.com/ericlee42/metis-verifier-node-setup/blob/main/src/index.ts#L83-L104).
+Read code example [here](./src/verify1.ts).
 
 ## Verify2 phase
 
 If verify1 phase is done, you have to make a `verify2` transaction.
 
-Read code example [here](https://github.com/ericlee42/metis-verifier-node-setup/blob/main/src/index.ts#L106-L115).
+Read code example [here](./src/verify2.ts).
