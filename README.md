@@ -19,7 +19,7 @@ Run DTL(data transfer layer) service
 docker-compose up -d dtl-mainnet
 
 # testnet
-docker-compose -f docker-compose-test.yml up -d dtl-testnet
+docker-compose -f docker-compose-testnet.yml up -d dtl-testnet
 ```
 
 Run l2geth service
@@ -28,7 +28,7 @@ Run l2geth service
 docker-compose up -d l2geth-mainnet
 
 # testnet
-docker-compose -f docker-compose-test.yml up -d l2geth-test
+docker-compose -f docker-compose-testnet.yml up -d l2geth-test
 ```
 
 the config of the services, you can get from [config.md](./CONFIG.md)
