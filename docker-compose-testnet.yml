@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   dtl-testnet:
@@ -9,9 +9,9 @@ services:
         # An endpoint for the L1 network, either rinkeby or mainnet
         DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: https://rinkeby.infura.io/v3/514264a512764ad78f57a2ff5106af2e
         # connect to the 2 layers
-        DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT: "https://stardust.metis.io/?owner=588"
-        DATA_TRANSPORT_LAYER__SYNC_FROM_L1: 'true'
-        DATA_TRANSPORT_LAYER__SYNC_FROM_L2: 'false'
+        DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT: https://stardust.metis.io/?owner=588
+        DATA_TRANSPORT_LAYER__SYNC_FROM_L1: "true"
+        DATA_TRANSPORT_LAYER__SYNC_FROM_L2: "false"
         DATA_TRANSPORT_LAYER__L2_CHAIN_ID: 588
         # Path to the database for this service.
         DATA_TRANSPORT_LAYER__DB_PATH: /data/db
@@ -20,8 +20,8 @@ services:
         DATA_TRANSPORT_LAYER__CONFIRMATIONS: 0
         DATA_TRANSPORT_LAYER__POLLING_INTERVAL: 100
         DATA_TRANSPORT_LAYER__LOGS_PER_POLLING_INTERVAL: 2000
-        DATA_TRANSPORT_LAYER__DANGEROUSLY_CATCH_ALL_ERRORS: true
-        DATA_TRANSPORT_LAYER__SERVER_HOSTNAME: 0.0.0.0
+        DATA_TRANSPORT_LAYER__DANGEROUSLY_CATCH_ALL_ERRORS: "true"
+        DATA_TRANSPORT_LAYER__SERVER_HOSTNAME: "0.0.0.0"
     ports:
       - ${DTL_PORT:-7878}:7878
     volumes:
@@ -40,17 +40,17 @@ services:
         ETH1_HTTP: https://rinkeby.infura.io/v3/514264a512764ad78f57a2ff5106af2e
         ROLLUP_STATE_DUMP_PATH: https://metis-us-east-2-prod-json.s3.us-east-2.amazonaws.com/state-dump.latest.json
         ROLLUP_CLIENT_HTTP: http://dtl-testnet:7878
-        ROLLUP_BACKEND: 'l1'
+        ROLLUP_BACKEND: "l1"
         CHAIN_ID: 588
         NETWORK_ID: 588
         ETH1_CTC_DEPLOYMENT_HEIGHT: 8
         RETRIES: 60
-        ROLLUP_VERIFIER_ENABLE: 'true'
+        ROLLUP_VERIFIER_ENABLE: "true"
         BLOCK_SIGNER_KEY: "6587ae678cf4fc9a33000cdbf9f35226b71dcc6a4684a31203241f9bcfd55d27"
         BLOCK_SIGNER_ADDRESS: "0x00000398232E2064F896018496b4b44b3D62751F"
         ETH1_SYNC_SERVICE_ENABLE: "true"
         ETH1_CONFIRMATION_DEPTH: 0
-        ROLLUP_POLL_INTERVAL_FLAG: 500ms
+        ROLLUP_POLL_INTERVAL_FLAG: "500ms"
         ROLLUP_ENABLE_L2_GAS_POLLING: "true"
         RPC_ENABLE: "true"
         RPC_ADDR: "0.0.0.0"
@@ -58,7 +58,7 @@ services:
         RPC_API: "eth,net,rollup,web3,admin,txpool,debug"
         RPC_CORS_DOMAIN: "*"
         RPC_VHOSTS: "*"
-        WS: true
+        WS: "true"
         WS_ADDR: "0.0.0.0"
         WS_PORT: "8546"
         WS_API: "eth,net,rollup,web3"
@@ -66,9 +66,9 @@ services:
         DATADIR: "/root/.ethereum"
         GASPRICE: 0
         GCMODE: "archive"
-        IPC_DISABLE: true
-        NO_USB: true
-        NO_DISCOVER: true
+        IPC_DISABLE: "true"
+        NO_USB: "true"
+        NO_DISCOVER: "true"
         TARGET_GAS_LIMIT: 1100000000
         USING_OVM: "true"
         MVM_L1GATEWAY_ADDRESS: 

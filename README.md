@@ -1,41 +1,51 @@
 # Metis verifier node setup guide
 
-## Prerequired
+## Prerequisites
 
 - docker
 - docker-compose
 
 ## Setup a verifier node
 
-clone this repository
+### Clone this repository
 
 ```
 git clone https://github.com/ericlee42/metis-verifier-node-setup.git
 ```
 
-Run DTL(data transfer layer) service
+### Run DTL (data transfer layer) service
+
+**Mainnet**
 
 ```
 docker-compose up -d dtl-mainnet
+```
 
-# testnet
+**Testnet**
+
+```
 docker-compose -f docker-compose-testnet.yml up -d dtl-testnet
 ```
 
-Run l2geth service
+### Run l2geth service
+
+**Mainnet**
 
 ```
 docker-compose up -d l2geth-mainnet
+```
 
-# testnet
+**Testnet**
+
+```
 docker-compose -f docker-compose-testnet.yml up -d l2geth-test
 ```
 
-the config of the services, you can get from [config.md](./CONFIG.md)
+The config of the services, you can get from [config.md](./CONFIG.md)
 
 ## Enter staking
 
-Make sure your wallet address is in the whitelist first, and that you have sufficient METIS and ETH at your address
+Make sure your wallet address is whitelisted first and you have sufficient METIS and ETH in your address
 
 Read code example [here](https://github.com/ericlee42/metis-verifier-node-setup/blob/main/src/index.ts#L33-L48).
 
