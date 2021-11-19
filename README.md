@@ -38,7 +38,7 @@ docker-compose up -d l2geth-mainnet
 **Testnet**
 
 ```
-docker-compose -f docker-compose-testnet.yml up -d l2geth-test
+docker-compose -f docker-compose-testnet.yml up -d l2geth-testnet
 ```
 
 The config of the services, you can get from [config.md](./CONFIG.md)
