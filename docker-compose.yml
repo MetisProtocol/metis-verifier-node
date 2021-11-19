@@ -33,6 +33,13 @@ services:
         max-size: "2m"
         max-file: "10"
 
+  dtl-expose:
+    image: ericlee42/metis-dtl-expose:latest
+    environment:
+      - DTL_ENDPOINT="http://dtl-mainnet:7878"
+    ports:
+      - 8080:8080
+
   l2geth-mainnet:
     image: ericlee42/metis-l2geth
     entrypoint: sh ./geth.sh

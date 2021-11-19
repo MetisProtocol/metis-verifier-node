@@ -21,6 +21,12 @@ git clone https://github.com/ericlee42/metis-verifier-node-setup.git
 docker-compose up -d dtl-mainnet
 ```
 
+NOTE: After the Mainnet is live, we need to monitor the status of the verifier nodes.
+
+We will send a `/verifier/get/*` request to your DTL service
+
+Please change your firewall inbound rules to allow the IP `3.13.115.31` to access port `8080` of your verifier node.
+
 **Testnet**
 
 ```
