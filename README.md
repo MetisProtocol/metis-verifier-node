@@ -17,8 +17,24 @@ git clone https://github.com/ericlee42/metis-verifier-node-setup.git
 
 It retrieves and indexes blocks from L1, and saves states in local database.
 
-```
+Before running this service, please read our [configuration instructions](./CONFIG.md) and changes to the correct configuration.
+
+Start the service
+
+```sh
 docker-compose up -d dtl-mainnet
+```
+
+Get the logs
+
+```sh
+docker-compose logs -f dtl-mainnet
+```
+
+If you get this log below, it means the start-up was successful
+
+```
+{"level":30,"time":1637635043668,"msg":"Service has started"}
 ```
 
 NOTE: After the Mainnet is live, we need to monitor the status of the verifier nodes.
@@ -35,11 +51,11 @@ It gets states from DTL service, and reconstructs blocks locally, and provides w
 docker-compose up -d l2geth-mainnet
 ```
 
-The config of the services, you can get from [config.md](./CONFIG.md)
-
 **NOTE: the DTL and L2Geth services doesn't work on testnest now**
 
-## Fraud proof sercvie
+## Fraud proof service
+
+**BUILDING, DON'T USE IT NOW**
 
 NOTE: the service is not yet fully operational on mainnet, please watch for our subsequent announcements
 
