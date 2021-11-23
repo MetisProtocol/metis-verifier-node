@@ -5,8 +5,8 @@
 | Variable                                                | Default     | Description                                                                                        |
 | ------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------- |
 | URL                                                     | -           | used for setting the address manager address                                                       |
-| DATA_TRANSPORT_LAYER__DB_PATH                           | /data/db    | Path to the database for this service, recommend using `URL` settting.                             |
-| DATA_TRANSPORT_LAYER__ADDRESS_MANAGER                   | -           | Address of the AddressManager contract on L1.                                                      |
+| DATA_TRANSPORT_LAYER__ADDRESS_MANAGER                   | -           | Address of the AddressManager contract on L1., recommend using `URL` settting.                     |
+| DATA_TRANSPORT_LAYER__DB_PATH                           | /data/db    | Path to the database for this service                                                              |
 | DATA_TRANSPORT_LAYER__POLLING_INTERVAL                  | 5000        | Period of time between execution loops.                                                            |
 | DATA_TRANSPORT_LAYER__DANGEROUSLY_CATCH_ALL_ERRORS      | false       | If true, will catch all errors without throwing.                                                   |
 | DATA_TRANSPORT_LAYER__CONFIRMATIONS                     | 12          | Number of confirmations to wait before accepting transactions as "canonical".                      |
@@ -32,7 +32,7 @@ NOTE:
 | DATA_TRANSPORT_LAYER__ADDRESS_MANAGER | 0xC9EB2B0bD7dbA69bb72886E9cF5da34d1Ca88C38                                  | 0x918778e825747a892b17C66fe7D24C618262867d                                     |
 | URL                                   | https://metis-us-east-2-prod-json.s3.us-east-2.amazonaws.com/addresses.json | https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/addresses.json |
 | DATA_TRANSPORT_LAYER__L2_CHAIN_ID     | 588                                                                         | 1088                                                                           |
-| DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT | https://stardust.metis.io/?owner=588                                        | https://andromeda.metis.io/?owner=1088                                          |
+| DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT | https://stardust.metis.io/?owner=588                                        | https://andromeda.metis.io/?owner=1088                                         |
 
 ## L2Geth Service Enviroment Config
 
