@@ -82,6 +82,34 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 
 **NOTE: the DTL and L2Geth services doesn't work on testnest now**
 
+## Check the services status
+
+If you get flowing result, it means all the services work
+
+```console
+$ curl -s 'http://localhost:7878/verifier/get/true/1088' | jq
+{
+  "verify": {
+    "index": 1162,
+    "stateRoot": "0x1f8276f54ae6c3ced562ecc1ac34d57a2c19ffd5ea4df7da2e58edc64a7e4d28",
+    "verifierRoot": "0x1f8276f54ae6c3ced562ecc1ac34d57a2c19ffd5ea4df7da2e58edc64a7e4d28",
+    "timestamp": 1637715686733
+  },
+  "batch": {
+    "index": 126,
+    "blockNumber": 13673928,
+    "timestamp": 1637712252,
+    "submitter": "0x9cB01d516D930EF49591a05B09e0D33E6286689D",
+    "size": 24,
+    "root": "0x05a125618a1a25b215bd5d3797239ed0eb2e32a9844a8503f01c92b7089a22e5",
+    "prevTotalElements": 1139,
+    "extraData": "0x00000000000000000000000000000000000000000000000000000000619d817c0000000000000000000000009cb01d516d930ef49591a05b09e0d33e6286689d",
+    "l1TransactionHash": "0x45d8b880a7c078b3ae0d76414d1bc186a9b75534d389b5d3873c83c3a9db8150"
+  },
+  "success": true
+}
+```
+
 ## Fraud proof service
 
 **BUILDING, DON'T USE IT NOW**
