@@ -57,7 +57,7 @@ docker-compose up -d l2geth-mainnet
 Get the logs
 
 ```sh
-docker-compose logs -f dtl-mainnet
+docker-compose logs -f l2geth-mainnet
 ```
 
 If you get this log below, it means the start-up was successful
@@ -84,10 +84,10 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 
 ## Check the services status
 
-If you get flowing result, it means all the services work
+If you get the following logs, all services are running successfully
 
 ```console
-$ curl -s 'http://localhost:7878/verifier/get/true/1088' | jq
+$ curl -s 'http://localhost:7878/verifier/get/true/1088'
 {
   "verify": {
     "index": 1162,
