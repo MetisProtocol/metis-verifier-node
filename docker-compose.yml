@@ -36,8 +36,6 @@ services:
 
   dtl-expose:
     image: ericlee42/metis-dtl-expose:latest
-    environment:
-      - DTL_ENDPOINT="http://dtl-mainnet:7878"
     ports:
       - 8080:8080
 
