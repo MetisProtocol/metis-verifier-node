@@ -47,6 +47,10 @@ We will send a `/verifier/get/*` request to your DTL service
 
 Please change your firewall inbound rules to allow the IP `3.13.115.31` to access port `8080` of your verifier node.
 
+```sh
+docker-compose up -d dtl-expose
+```
+
 ### Run l2geth service
 
 It gets states from DTL service, and reconstructs blocks locally, and provides web3 interface for your applications.
