@@ -112,7 +112,7 @@ $ curl -s 'http://localhost:7878/verifier/get/true/1088' | jq
 
 ## Fraud proof service
 
-**BUILDING, DON'T USE IT NOW**
+**UNDER CONSTRUCTION, DON'T USE IT NOW**
 
 NOTE: the service is not yet fully operational on mainnet, please watch for our subsequent announcements
 
