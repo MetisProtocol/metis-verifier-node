@@ -7,7 +7,7 @@ services:
         # used for setting the address manager address
         URL: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/addresses.json
         # replace YOUR_RINKEBY_TOKEN to your rinkeby token
-        DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: https://mainnet.infura.io/v3/53d21c87e73a4a69be5fce1763a3892e
+        DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: https://mainnet.infura.io/v3/YOUR_RINKEBY_TOKEN
         # Metis endpoint, see https://docs.metis.io/building-on-metis/connection-detailsee 
         DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT: "https://andromeda.metis.io/?owner=1088"
         DATA_TRANSPORT_LAYER__SYNC_FROM_L1: "true"
@@ -44,7 +44,7 @@ services:
     entrypoint: sh ./geth.sh
     environment:
         # replace YOUR_RINKEBY_TOKEN to your rinkeby token
-        ETH1_HTTP: https://mainnet.infura.io/v3/53d21c87e73a4a69be5fce1763a3892e
+        ETH1_HTTP: https://mainnet.infura.io/v3/YOUR_RINKEBY_TOKEN
         ROLLUP_STATE_DUMP_PATH: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/state-dump.latest.json
         ROLLUP_CLIENT_HTTP: http://dtl-mainnet:7878
         ROLLUP_BACKEND: "l1"

@@ -11,15 +11,16 @@
 
 ```
 git clone https://github.com/ericlee42/metis-verifier-node-setup.git
+cp docker-compose-mainnet.yml docker-compose.yml
 ```
+
+Before running, please read our [configuration instructions](./CONFIG.md) and changes to the correct configuration.
 
 ### Run DTL (data transfer layer) service
 
 It retrieves and indexes blocks from L1, and saves states in local database.
 
-Before running this service, please read our [configuration instructions](./CONFIG.md) and changes to the correct configuration.
-
-Start the service
+you should change `DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT` config first, and then start the service
 
 ```sh
 docker-compose up -d dtl-mainnet
@@ -49,6 +50,8 @@ Please change your firewall inbound rules to allow the IP `3.13.115.31` to acces
 ### Run l2geth service
 
 It gets states from DTL service, and reconstructs blocks locally, and provides web3 interface for your applications.
+
+you should change `ETH1_HTTP` config first, and then start the service
 
 ```
 docker-compose up -d l2geth-mainnet
@@ -87,7 +90,7 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 If you get the following logs, all services are running successfully
 
 ```console
-$ curl -s 'http://localhost:7878/verifier/get/true/1088'
+$ curl 'http://localhost:7878/verifier/get/true/1088'
 {
   "verify": {
     "index": 1162,
