@@ -3,6 +3,7 @@ version: "3.8"
 services:
   dtl-mainnet:
     image: ericlee42/metis-dtl:20211123-1
+    restart: unless-stopped
     environment:
         # used for setting the address manager address
         URL: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/addresses.json
@@ -36,12 +37,14 @@ services:
 
   dtl-expose:
     image: ericlee42/metis-dtl-expose:latest
+    restart: unless-stopped
     ports:
       - 8080:8080
 
   l2geth-mainnet:
     image: ericlee42/metis-l2geth:20211123-1
     entrypoint: sh ./geth.sh
+    restart: unless-stopped
     environment:
         # replace YOUR_RINKEBY_TOKEN to your rinkeby token
         ETH1_HTTP: https://mainnet.infura.io/v3/YOUR_RINKEBY_TOKEN
