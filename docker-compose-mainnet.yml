@@ -46,7 +46,7 @@ services:
     image: ericlee42/metis-l2geth:20211124
     entrypoint: sh ./geth.sh
     restart: unless-stopped
-    stop_graceful_period: 2m
+    stop_grace_period: 2m
     environment:
         # replace YOUR_INFURA_TOKEN to your mainnet token
         ETH1_HTTP: https://mainnet.infura.io/v3/YOUR_INFURA_TOKEN
