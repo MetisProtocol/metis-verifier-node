@@ -5,8 +5,9 @@ version: "3.8"
 
 services:
   dtl-testnet:
-    image: ericlee42/metis-dtl:latest
+    image: ericlee42/metis-dtl:20211124
     restart: unless-stopped
+    stop_grace_period: 2m
     environment:
         # used for setting the address manager address
         URL: https://metis-us-east-2-prod-json.s3.us-east-2.amazonaws.com/addresses.json
@@ -37,8 +38,9 @@ services:
         max-file: "10"
 
   l2geth-testnet:
-    image: ericlee42/metis-l2geth
+    image: ericlee42/metis-l2geth:20211124
     restart: unless-stopped
+    stop_grace_period: 2m
     entrypoint: sh ./geth.sh
     environment:
         # replace YOUR_RINKEBY_TOKEN to your rinkeby token
