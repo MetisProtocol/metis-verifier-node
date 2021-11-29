@@ -6,8 +6,7 @@ import { VerifyContractAddress, MetisAddress, PrivateKey } from "./config";
 import type { MVMVerifier } from "./typechain/MVMVerifier";
 import type { IERC20 } from "./typechain/IERC20";
 
-const EthL1Endpint =
-  "https://mainnet.infura.io/v3/514264a512764ad78f57a2ff5106af2e";
+const EthL1Endpint = "https://mainnet.infura.io/v3/YOUR_INFURA_TOKEN";
 
 const provider = new ethers.providers.JsonRpcProvider(EthL1Endpint);
 const wallet = new ethers.Wallet(PrivateKey, provider);

@@ -23,5 +23,6 @@ export type StateRootBatchEntry = BatchEntry;
 export interface VerifierResultResponse {
   verify: VerifierResultEntry;
   batch: StateRootBatchEntry;
+  stateRoots: string[];
   success: boolean;
 }

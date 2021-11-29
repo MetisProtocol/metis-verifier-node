@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   dtl-mainnet:
-    image: ericlee42/metis-dtl:20211124
+    image: ericlee42/metis-dtl:20211129
     restart: unless-stopped
     stop_grace_period: 2m
     environment:

@@ -32,6 +32,7 @@ interface MVMVerifierInterface extends ethers.utils.Interface {
     "depositSeqStake(uint256)": FunctionFragment;
     "disableWhiteList()": FunctionFragment;
     "encrypt(bytes,bytes)": FunctionFragment;
+    "getMerkleRoot(bytes32[])": FunctionFragment;
     "isSufficientlyStaked(address)": FunctionFragment;
     "isWhiteListed(address)": FunctionFragment;
     "libAddressManager()": FunctionFragment;
@@ -98,6 +99,10 @@ interface MVMVerifierInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "encrypt",
     values: [BytesLike, BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getMerkleRoot",
+    values: [BytesLike[]]
   ): string;
   encodeFunctionData(
     functionFragment: "isSufficientlyStaked",
@@ -221,6 +226,10 @@ interface MVMVerifierInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "encrypt", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getMerkleRoot",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "isSufficientlyStaked",
     data: BytesLike
@@ -435,6 +444,11 @@ export class MVMVerifier extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    getMerkleRoot(
+      elements: BytesLike[],
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
     isSufficientlyStaked(
       target: string,
       overrides?: CallOverrides
@@ -615,6 +629,11 @@ export class MVMVerifier extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  getMerkleRoot(
+    elements: BytesLike[],
+    overrides?: CallOverrides
+  ): Promise<string>;
+
   isSufficientlyStaked(
     target: string,
     overrides?: CallOverrides
@@ -782,6 +801,11 @@ export class MVMVerifier extends BaseContract {
     encrypt(
       data: BytesLike,
       key: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    getMerkleRoot(
+      elements: BytesLike[],
       overrides?: CallOverrides
     ): Promise<string>;
 
@@ -1041,6 +1065,11 @@ export class MVMVerifier extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    getMerkleRoot(
+      elements: BytesLike[],
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     isSufficientlyStaked(
       target: string,
       overrides?: CallOverrides
@@ -1196,6 +1225,11 @@ export class MVMVerifier extends BaseContract {
     encrypt(
       data: BytesLike,
       key: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getMerkleRoot(
+      elements: BytesLike[],
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 

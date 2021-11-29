@@ -23,13 +23,14 @@ const makeChallenge = async () => {
     proposedKey
   );
 
+  const batchRoot = await verifier.getMerkleRoot(data.stateRoots);
   const keyHash = crypto.createHash("sha256").update(proposedKey).digest();
 
   await verifier.newChallenge(
     ChainId,
     {
       batchIndex: data.batch.index,
-      batchRoot: data.batch.root,
+      batchRoot: batchRoot,
       batchSize: data.batch.size,
       prevTotalElements: data.batch.prevTotalElements,
       extraData: data.batch.extraData,
