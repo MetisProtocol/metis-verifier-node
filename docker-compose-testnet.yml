@@ -5,7 +5,7 @@ version: "3.8"
 
 services:
   dtl-testnet:
-    image: ericlee42/metis-dtl:20211124
+    image: ericlee42/metis-dtl:20211205
     restart: unless-stopped
     stop_grace_period: 2m
     environment:
