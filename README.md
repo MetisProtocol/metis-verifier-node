@@ -47,7 +47,7 @@ NOTE: After the Mainnet is live, we need to monitor the status of the verifier n
 
 We will send a `/verifier/get/*` request to your DTL service
 
-Please change your firewall inbound rules to allow the IP `3.13.115.31` to access port `8080` of your verifier node.
+Please change your firewall inbound rules to allow the IP `3.13.115.31` to access port `8080` of your verifier node. If you finish this step, you should send your IP and Metis address to our email(verifier#metis.io).
 
 ```sh
 docker-compose up -d dtl-expose
