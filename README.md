@@ -6,6 +6,7 @@ block height of verifier node will always lag behind the latest block height of 
 
 ## Prerequisites
 
+- **Linux operation skill**
 - docker
 - docker-compose
 
