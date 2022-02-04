@@ -2,13 +2,13 @@ version: "3.8"
 
 services:
   dtl-mainnet:
-    image: ericlee42/metis-dtl:20211229
+    image: metisdao/mvm-andromeda:dtl
     restart: unless-stopped
     stop_grace_period: 2m
     environment:
         # used for setting the address manager address
         URL: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/addresses.json
-        DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: !!CHANGE IT TO YOUR L1 RPC ENDPOINT!!
+        DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: "!!CHANGE IT TO YOUR ETHEREUM MAINNET RPC ENDPOINT!!"
         # Metis endpoint, see https://docs.metis.io/building-on-metis/connection-detailsee 
         DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT: "https://andromeda.metis.io/?owner=1088"
         DATA_TRANSPORT_LAYER__SYNC_FROM_L1: "true"
@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
     stop_grace_period: 2m
     environment:
-        ETH1_HTTP: !!CHANGE IT TO YOUR L1 RPC ENDPOINT!!
+        ETH1_HTTP: "!!CHANGE IT TO YOUR ETHEREUM MAINNET RPC ENDPOINT!!"
         ROLLUP_STATE_DUMP_PATH: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/state-dump.latest.json
         ROLLUP_CLIENT_HTTP: http://dtl-mainnet:7878
         ROLLUP_BACKEND: "l1"
@@ -82,6 +82,7 @@ services:
         NO_DISCOVER: "true"
         TARGET_GAS_LIMIT: 1100000000
         USING_OVM: "true"
+        EMERGENCY_FORK_NUMBER: 750000
     ports:
       - ${VERIFIER_HTTP_PORT:-8549}:8545
       - ${VERIFIER_WS_PORT:-8550}:8546
