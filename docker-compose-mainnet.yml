@@ -29,7 +29,7 @@ services:
     ports:
       - ${DTL_PORT:-7878}:7878
     volumes:
-      - /data/metis/mainnet/dtl:/data/db
+      - /data/metis/mainnet/dtl:/data
     logging:
       driver: "json-file"
       options:
