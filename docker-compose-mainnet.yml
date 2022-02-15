@@ -43,7 +43,7 @@ services:
       - 8080:8080
 
   l2geth-mainnet:
-    image: ericlee42/metis-l2geth:20211124
+    image: metisdao/mvm-andromeda:l2geth
     entrypoint: sh ./geth.sh
     restart: unless-stopped
     stop_grace_period: 2m
