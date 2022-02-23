@@ -4,6 +4,9 @@ You may not need this, you can use our [public rpc](https://docs.metis.io/buildi
 
 block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/ericlee42/metis-replica-node-guide)
 
+
+**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node-setup/issues/new).**
+
 ## Prerequisites
 
 - **Linux operation skill**
