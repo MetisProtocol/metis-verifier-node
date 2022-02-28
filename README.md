@@ -13,6 +13,12 @@ block height of verifier node will always lag behind the latest block height of 
 - docker
 - docker-compose
 
+## Recommended hardware specification
+
+RAM: 8 GB
+CPU: 4 core CPU
+Storage: Minimum 80GB SSD (make sure it is extendable)
+
 ## Setup a verifier node
 
 ### Clone this repository
