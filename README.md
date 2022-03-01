@@ -125,7 +125,7 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 
 ## Check the services status
 
-If you get the following logs, all services are running successfully
+If you get the following logs, all services are running successfully. check out [this issue](https://github.com/ericlee42/metis-verifier-node-setup/issues/3) for details
 
 ```console
 $ curl 'http://localhost:8080/verifier/get/true/1088'
@@ -188,6 +188,7 @@ $ curl 'http://localhost:8080/verifier/get/true/1088'
   "success": true
 }
 ```
+
 
 ## Fraud proof service
 
