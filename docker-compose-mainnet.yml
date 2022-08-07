@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   dtl-mainnet:
-    image: metisdao/mvm-andromeda:dtl
+    image: metisdao/mvm-andromeda:dtl@sha256:d0b7419f7443510a58d073403fc4add4657ba5b58d41e4c89e41bfbff86c571f
     restart: unless-stopped
     stop_grace_period: 2m
     environment:
@@ -43,7 +43,7 @@ services:
       - 8080:8080
 
   l2geth-mainnet:
-    image: metisdao/mvm-andromeda:l2geth
+    image: metisdao/mvm-andromeda:l2geth@sha256:90fa9912aca5b695f33636cd62a4b53d1665a2517d95af416e2dacee18884e4c
     entrypoint: sh ./geth.sh
     restart: unless-stopped
     stop_grace_period: 2m

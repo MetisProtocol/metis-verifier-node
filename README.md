@@ -2,29 +2,31 @@
 
 You may not need this, you can use our [public rpc](https://docs.metis.io/building-on-metis/connection-details).
 
-block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/ericlee42/metis-replica-node-guide)
+block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/ericlee42/metis-replica-node)
 
 
-**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node-setup/issues/new).**
+**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node/issues/new).**
 
 ## Prerequisites
 
-- **Linux operation skill**
+- Linux(x86_64)
 - docker
 - docker-compose
 
 ## Recommended hardware specification
 
 RAM: 8 GB
-CPU: 4 core CPU
-Storage: Minimum 80GB SSD (make sure it is extendable)
+CPU: 4 core CPU(x86_64)
+Storage: Minimum 100GB SSD (make sure it is extendable)
+
+AWS instance example: c5.2xlarge
 
 ## Setup a verifier node
 
 ### Clone this repository
 
 ```
-git clone https://github.com/ericlee42/metis-verifier-node-setup.git
+git clone https://github.com/ericlee42/metis-verifier-node.git
 cp docker-compose-mainnet.yml docker-compose.yml
 ```
 
@@ -67,26 +69,6 @@ Please change your firewall inbound rules to allow the IP `3.13.115.31` to acces
 docker-compose up -d dtl-expose
 ```
 
-If you encounter the following issue, please delete all data first and then restart the service to resync data from scratch
-
-```
-{"level":30,"time":1637760083321,"highestSyncedL1Block":13675395,"targetL1Block":13677395,"msg":"Synchronizing events from Layer 1 (Ethereum)"}
-{"level":30,"time":1637760086455,"chainId":1088,"parsedEvent":{"index":331,"target":"0x4200000000000000000000000000000000000007","data":"0xcbd4ece900000000000000000000000042000000000000000000000000000000000000100000000000000000000000003980c9ed79d2c191a89e02fa3529c60ed6e9c04b0000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000014b00000000000000000000000000000000000000000000000000000000000000e4662a633a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000deaddeaddeaddeaddeaddeaddeaddeaddead0000000000000000000000000000ee13025667678a99e53eeea671c045c24f450c81000000000000000000000000ee13025667678a99e53eeea671c045c24f450c81000000000000000000000000000000000000000000000001a3fdce68ae8d080000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","gasLimit":"592800","origin":"0x192E1101855bD523Ba69a9794e0217f0Db633510","blockNumber":13675395,"timestamp":1637731800,"ctcIndex":null},"msg":"Storing Event:"}
-{"level":40,"time":1637760086456,"message":"TransactionEnqueued: missing event: TransactionEnqueued","msg":"recovering from a missing event"}
-Well, that's that. We ran into a fatal error. Here's the dump. Goodbye!
-(node:1) UnhandledPromiseRejectionWarning: Error: unable to recover from missing event
-    at L1IngestionService._start (/opt/optimism/packages/data-transport-layer/dist/src/services/l1-ingestion/service.js:150:31)
-    at async L1IngestionService.start (/opt/optimism/packages/common-ts/dist/base-service.js:33:9)
-    at async Promise.all (index 1)
-    at async L1DataTransportService._start (/opt/optimism/packages/data-transport-layer/dist/src/services/main/service.js:64:13)
-    at async L1DataTransportService.start (/opt/optimism/packages/common-ts/dist/base-service.js:33:9)
-    at async /opt/optimism/packages/data-transport-layer/dist/src/services/run.js:61:9
-(Use node --trace-warnings ... to show where the warning was created)
-(node:1) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag --unhandled-rejections=strict (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
-```
-
-Run this command `sudo rm -rf /data/metis` to delete all local data
-
 ### Run l2geth service
 
 It gets states from DTL service, and reconstructs blocks locally, and provides web3 interface for your applications.
@@ -125,7 +107,7 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 
 ## Check the services status
 
-If you get the following logs, all services are running successfully. check out [this issue](https://github.com/ericlee42/metis-verifier-node-setup/issues/3) for details
+If you get the following logs, all services are running successfully. check out [this issue](https://github.com/ericlee42/metis-verifier-node/issues/3) for details
 
 ```console
 $ curl 'http://localhost:8080/verifier/get/true/1088'
@@ -188,34 +170,3 @@ $ curl 'http://localhost:8080/verifier/get/true/1088'
   "success": true
 }
 ```
-
-
-## Fraud proof service
-
-**UNDER CONSTRUCTION, DON'T USE IT NOW**
-
-NOTE: the service is not yet fully operational on mainnet, please watch for our subsequent announcements
-
-There isn't an out-of-the-box service yet, you can read the code examples here and then build your own service.
-
-### Enter staking
-
-Make sure your wallet address is whitelisted first and you have sufficient METIS and ETH in your address
-
-Read code example [here](./src/enterStake.ts).
-
-### Make a challenge
-
-Read code example [here](./src/makeChallenge.ts).
-
-### Verify1 phase
-
-You have to make a `verify1` if someone makes a challenge.
-
-Read code example [here](./src/verify1.ts).
-
-### Verify2 phase
-
-If verify1 phase is done, you have to make a `verify2` transaction.
-
-Read code example [here](./src/verify2.ts).
