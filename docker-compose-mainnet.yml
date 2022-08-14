@@ -2,34 +2,17 @@ version: "3.8"
 
 services:
   dtl-mainnet:
-    image: metisdao/mvm-andromeda:dtl@sha256:d0b7419f7443510a58d073403fc4add4657ba5b58d41e4c89e41bfbff86c571f
+    image: metisdao/mvm-andromeda:verifier-dtl
+    container_name: metis-dtl
     restart: unless-stopped
     stop_grace_period: 2m
     environment:
-        # used for setting the address manager address
-        URL: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/addresses.json
-        DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: "!!CHANGE IT TO YOUR ETHEREUM MAINNET RPC ENDPOINT!!"
-        # Metis endpoint, see https://docs.metis.io/building-on-metis/connection-detailsee 
-        DATA_TRANSPORT_LAYER__L2_RPC_ENDPOINT: "https://andromeda.metis.io/?owner=1088"
-        DATA_TRANSPORT_LAYER__SYNC_FROM_L1: "true"
-        DATA_TRANSPORT_LAYER__SYNC_FROM_L2: "false"
-        DATA_TRANSPORT_LAYER__L2_CHAIN_ID: "1088"
-        # Path to the database for this service.
-        DATA_TRANSPORT_LAYER__DB_PATH: /data/db
-        DATA_TRANSPORT_LAYER__SERVER_PORT: "7878"
-        DATA_TRANSPORT_LAYER__TRANSACTIONS_PER_POLLING_INTERVAL: "1000"
-        DATA_TRANSPORT_LAYER__CONFIRMATIONS: "12"
-        # Period of time between execution loops.
-        DATA_TRANSPORT_LAYER__POLLING_INTERVAL: "100"
-        # Logs to sync per polling interval.
-        DATA_TRANSPORT_LAYER__LOGS_PER_POLLING_INTERVAL: "2000"
-        DATA_TRANSPORT_LAYER__DANGEROUSLY_CATCH_ALL_ERRORS: "true"
-        DATA_TRANSPORT_LAYER__SERVER_HOSTNAME: "0.0.0.0"
-        DATA_TRANSPORT_LAYER__L1_START_HEIGHT: 13625200
+      DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: ${ETHEREUM_RPC_ENDPOINT:?Set Ethereum rpc endpint first}
+    env_file: [ "dtl.env" ]
     ports:
       - ${DTL_PORT:-7878}:7878
     volumes:
-      - /data/metis/mainnet/dtl:/data
+      - ${METIS_VERIFIER_DATADIR:-/data/metis/mainnet}/dtl:/data
     logging:
       driver: "json-file"
       options:
@@ -38,56 +21,24 @@ services:
 
   dtl-expose:
     image: ericlee42/metis-dtl-expose:latest
+    container_name: metis-expose
     restart: unless-stopped
     ports:
       - 8080:8080
 
   l2geth-mainnet:
-    image: metisdao/mvm-andromeda:l2geth@sha256:90fa9912aca5b695f33636cd62a4b53d1665a2517d95af416e2dacee18884e4c
-    entrypoint: sh ./geth.sh
+    image: metisdao/mvm-andromeda:verifier-l2geth
+    container_name: metis-l2geth
     restart: unless-stopped
     stop_grace_period: 2m
+    env_file: [ "l2geth.env" ]
     environment:
-        ETH1_HTTP: "!!CHANGE IT TO YOUR ETHEREUM MAINNET RPC ENDPOINT!!"
-        ROLLUP_STATE_DUMP_PATH: https://metis-us-east-2-mainnet-json.s3.us-east-2.amazonaws.com/state-dump.latest.json
-        ROLLUP_CLIENT_HTTP: http://dtl-mainnet:7878
-        ROLLUP_BACKEND: "l1"
-        CHAIN_ID: 1088
-        NETWORK_ID: 1088
-        ETH1_CTC_DEPLOYMENT_HEIGHT: 8
-        RETRIES: 60
-        ROLLUP_VERIFIER_ENABLE: "true"
-        BLOCK_SIGNER_KEY: "6587ae678cf4fc9a33000cdbf9f35226b71dcc6a4684a31203241f9bcfd55d27"
-        BLOCK_SIGNER_ADDRESS: "0x00000398232E2064F896018496b4b44b3D62751F"
-        ETH1_SYNC_SERVICE_ENABLE: "true"
-        ETH1_CONFIRMATION_DEPTH: 0
-        ROLLUP_POLL_INTERVAL_FLAG: "500ms"
-        ROLLUP_ENABLE_L2_GAS_POLLING: "true"
-        RPC_ENABLE: "true"
-        RPC_ADDR: "0.0.0.0"
-        RPC_PORT: "8545"
-        RPC_API: eth,net,rollup,web3,admin,txpool,debug
-        RPC_CORS_DOMAIN: "*"
-        RPC_VHOSTS: "*"
-        WS: "true"
-        WS_ADDR: "0.0.0.0"
-        WS_PORT: "8546"
-        WS_API: "eth,net,rollup,web3"
-        WS_ORIGINS: "*"
-        DATADIR: "/root/.ethereum"
-        GASPRICE: 0
-        GCMODE: "archive"
-        IPC_DISABLE: "true"
-        NO_USB: "true"
-        NO_DISCOVER: "true"
-        TARGET_GAS_LIMIT: 1100000000
-        USING_OVM: "true"
-        EMERGENCY_FORK_NUMBER: 750000
+      ETH1_HTTP: ${ETHEREUM_RPC_ENDPOINT:?Set Ethereum rpc endpint first}
     ports:
       - ${VERIFIER_HTTP_PORT:-8549}:8545
       - ${VERIFIER_WS_PORT:-8550}:8546
     volumes:
-      - /data/metis/mainnet/l2geth:/root/.ethereum
+      - ${METIS_VERIFIER_DATADIR:-/data/metis/mainnet}/l2geth:/root/.ethereum
     logging:
       driver: "json-file"
       options:
