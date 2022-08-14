@@ -1,6 +1,6 @@
-# Metis verifier node setup guide
+# Metis verifier node
 
-You may not need this, you can use our [public rpc](https://docs.metis.io/building-on-metis/connection-details).
+You may not need this, you can use our [public rpc](https://docs.metis.io/dev/get-started/metis-connection-details).
 
 block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/ericlee42/metis-replica-node)
 
@@ -11,13 +11,13 @@ block height of verifier node will always lag behind the latest block height of 
 
 - Linux(x86_64)
 - docker
-- docker-compose
+- docker-compose v2
 
 ## Recommended hardware specification
 
 RAM: 8 GB
 
-CPU: 4 core CPU(x86_64)
+CPU: 4 core(x86_64)
 
 Storage: Minimum 100GB SSD (make sure it is extendable)
 
