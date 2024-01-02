@@ -1,9 +1,9 @@
-FROM golang:1.17-alpine AS builder
+FROM golang:1.21.5 AS builder
 WORKDIR /workdir
 COPY . .
 RUN go build -ldflags '-w -s' .
 
-FROM alpine:3.14
-COPY --from=builder /workdir/dtl-expose /usr/bin/
+FROM gcr.io/distroless/base-debian12
+COPY --from=builder /workdir/dtl-expose /usr/local/bin/
 EXPOSE 8080
 ENTRYPOINT [ "dtl-expose" ]

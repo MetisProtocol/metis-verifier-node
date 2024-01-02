@@ -1,23 +1,13 @@
-**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node/issues/new).**
----
-**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node/issues/new).**
----
-**If you have any questions, please ask us on GitHub [issue](https://github.com/ericlee42/metis-verifier-node/issues/new).**
----
-
-
-# Metis verifier node
+# Metis Andromeda Verifier Node
 
 You may not need this, you can use our [public rpc](https://docs.metis.io/dev/get-started/metis-connection-details).
 
-block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/ericlee42/metis-replica-node)
-
+block height of verifier node will always lag behind the latest block height of the current L2 network, to solve this problem, you can use the [replica node](https://github.com/MetisProtocol/metis-replica-node)
 
 ## Prerequisites
 
-- Linux(x86_64)
-- docker
-- docker-compose v2
+- Linux(Recommended Ubuntu 22.04)
+- docker See the install guide if you don't known how to install it https://docs.docker.com/engine/install/
 
 ## Recommended hardware specification
 
@@ -25,7 +15,7 @@ RAM: 8 GB
 
 CPU: 4 core(x86_64)
 
-Storage: Minimum 100GB SSD (make sure it is extendable)
+Storage: Minimum 250 GB SSD (make sure it is extendable)
 
 AWS instance recommended: c5.2xlarge
 
@@ -36,7 +26,7 @@ GCE instance recommended: c2-standard-4
 ### Clone this repository
 
 ```
-git clone https://github.com/ericlee42/metis-verifier-node.git
+git clone https://github.com/MetisProtocol/metis-verifier-node.git
 cp docker-compose-mainnet.yml docker-compose.yml
 ```
 
@@ -51,13 +41,13 @@ It retrieves and indexes blocks from L1, and saves states in local database.
 you should change `DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT` config first, and then start the service
 
 ```sh
-docker-compose up -d dtl-mainnet
+docker compose up -d dtl-mainnet
 ```
 
 Get the logs
 
 ```sh
-docker-compose logs -f dtl-mainnet
+docker compose logs -f dtl-mainnet
 ```
 
 If you get this log below, it means the start-up was successful
@@ -76,14 +66,12 @@ We will send a `/verifier/get/*` request to your DTL service
 Please change your firewall inbound rules to allow the IP `3.13.115.31` and `3.23.22.205	` to access port `8080` of your verifier node. If you finish this step, you should send your IP and Metis address to our email(verifier#metis.io).
 
 ```sh
-docker-compose up -d dtl-expose
+docker compose up -d dtl-expose
 ```
 
 ### Run l2geth service
 
 It gets states from DTL service, and reconstructs blocks locally, and provides web3 interface for your applications.
-
-you should change `ETH1_HTTP` config first, and then start the service
 
 ```
 docker-compose up -d l2geth-mainnet
@@ -92,7 +80,7 @@ docker-compose up -d l2geth-mainnet
 Get the logs
 
 ```sh
-docker-compose logs -f l2geth-mainnet
+docker compose logs -f l2geth-mainnet
 ```
 
 If you get this log below, it means the start-up was successful
@@ -117,4 +105,4 @@ DEBUG[11-23|04:52:02.264] Miner got new head                       height=6 bloc
 
 ## Check the services status
 
-check out [this issue](https://github.com/ericlee42/metis-verifier-node/issues/3) for details
+check out [this issue](https://github.com/MetisProtocol/metis-verifier-node/issues/3) for details

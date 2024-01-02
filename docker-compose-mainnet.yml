@@ -8,7 +8,7 @@ services:
     stop_grace_period: 2m
     environment:
       DATA_TRANSPORT_LAYER__L1_RPC_ENDPOINT: ${ETHEREUM_RPC_ENDPOINT:?Set Ethereum rpc endpint first}
-    env_file: [ "dtl.env" ]
+    env_file: ["dtl.env"]
     ports:
       - ${DTL_PORT:-7878}:7878
     volumes:
@@ -20,8 +20,11 @@ services:
         max-file: "10"
 
   dtl-expose:
-    image: ericlee42/metis-dtl-expose:latest
     container_name: metis-expose
+    build:
+      context: dtl-expose
+      dockerfile: Dockerfile
+      pull: true
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -31,9 +34,7 @@ services:
     container_name: metis-l2geth
     restart: unless-stopped
     stop_grace_period: 2m
-    env_file: [ "l2geth.env" ]
-    environment:
-      ETH1_HTTP: ${ETHEREUM_RPC_ENDPOINT:?Set Ethereum rpc endpint first}
+    env_file: ["l2geth.env"]
     ports:
       - ${VERIFIER_HTTP_PORT:-8549}:8545
       - ${VERIFIER_WS_PORT:-8550}:8546
